@@ -75,18 +75,6 @@ def nao_contribuintes(lista):
         
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__=="__main__":
     import doctest
     doctest.testmod()
