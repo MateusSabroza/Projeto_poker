@@ -59,8 +59,34 @@ def pontos_da_rodada(lista1,lista2):
         return (0, pontos_jogador2)
 
 
- 
-                
+
+def nao_contribuintes(lista):
+    """
+    Recebe uma mão(lista) e retorna uma lista com as cartas que não contribuem para pontos.
+
+    """
+
+    cartas_unicas_na_mao = set(lista)
+    nao_contribuintes = []
+    for carta in cartas_unicas_na_mao:
+        if lista.count(carta) == 1 :
+            nao_contribuintes += [carta]
+    return nao_contribuintes
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__=="__main__":
     import doctest
     doctest.testmod()
