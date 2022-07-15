@@ -64,6 +64,13 @@ def nao_contribuintes(lista):
     """
     Recebe uma mão(lista) e retorna uma lista com as cartas que não contribuem para pontos.
 
+    >>> nao_contribuintes(["A","A","K","J","7"])
+    ['7', 'J', 'K']
+    >>> nao_contribuintes(["A","A","K","A","7"])
+    ['7', 'K']
+    >>> nao_contribuintes(["A","7","K","Q","J"])
+    ['7', 'A', 'J', 'K', 'Q']
+
     """
 
     cartas_unicas_na_mao = set(lista)
@@ -71,7 +78,7 @@ def nao_contribuintes(lista):
     for carta in cartas_unicas_na_mao:
         if lista.count(carta) == 1 :
             nao_contribuintes += [carta]
-    return nao_contribuintes
+    return sorted(nao_contribuintes)     # como conjuntos não possuem ordem, a lista poderia vir escrita de maneira diferente, então estamos ordenando para o doctest funcionar.
         
 
 
