@@ -81,6 +81,26 @@ def nao_contribuintes(lista):
     return sorted(nao_contribuintes)     # como conjuntos não possuem ordem, a lista poderia vir escrita de maneira diferente, então estamos ordenando para o doctest funcionar.
         
 
+def nao_contribuintes_ate_3(lista):
+    """
+    retorna 3 cartas que não contribuem para pontos
+    
+    >>> nao_contribuintes_ate_3(["A","A","K","J","7"])
+    ['7', 'J', 'K']
+    >>> nao_contribuintes_ate_3(["A","A","K","A","7"])
+    ['7', 'K']
+    >>> nao_contribuintes_ate_3(["A","7","K","Q","J"])
+    ['7', 'A', 'J']
+    """
+    nao_contribuinte = nao_contribuintes(lista)
+    if len(nao_contribuinte) <= 3 :
+        return nao_contribuinte
+    else :
+        return [nao_contribuinte[0],nao_contribuinte[1],nao_contribuinte[2]] 
+
+
+    
+    
 
 if __name__=="__main__":
     import doctest
