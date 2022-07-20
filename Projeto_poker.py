@@ -97,9 +97,18 @@ def nao_contribuintes_ate_3(lista):
         return nao_contribuinte
     else :
         return [nao_contribuinte[0],nao_contribuinte[1],nao_contribuinte[2]] 
-
-
+#Importando intertools
+from itertools import combinations
     
+def possiblidades(mao_parcial, num_cartas, cartas_restantes):
+    """Gerador de combinações da mão parcial(5-num_cartas cartas) com  num_cartas das cartas_restantes"""
+    lista=list()
+    for combinacao in combinations(cartas_restantes, num_cartas):#esse for percorre cada elemento de uma lista de combinacoes
+        l=mao_parcial[:]#cria uma copia da mão parcial
+        l+=combinacao#junta o elemento da lista de combinacoes com a copia da lista das cartas da mão
+        lista.append([l])# cria uma lista de todas as combinacoes possiveis com a mão       
+    return (x for x in lista) #retorna um gerador da lista
+
     
 
 if __name__=="__main__":
