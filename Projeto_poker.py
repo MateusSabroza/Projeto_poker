@@ -176,6 +176,76 @@ def valor_médio_troca(mao, trocas):
         
         valores_apos_troca += [valor_da_mao(uma_possibilidade[0])]
 
+def trocas_humano(mao, trocas1=None):
+    if trocas1!=None:
+        print(f"Seu adversário trocou {trocas1} cartas. Você possui {mao}.")
+    else:
+        print(f"Seu adversário não trocou cartas. Você possui {mao}.")
+    trocas = list(input("Quais deseja trocar? "))
+    for x in trocas:#verifica se é um input válido
+        if x not in set(mao):
+            print(f'A carta {x} não pertence a sua mão, tente novamente')
+            return trocas_humano(mao,trocas1)
+    return trocas
+
+def desistir_humano(mao_atual, mao_original, trocas_minhas,
+trocas_outro=None, segundo=False):
+    if segundo==True:
+        if trocas_outro==None:
+            print(f"Seu adversário decidiu continuar. Ele não trocou cartas.")
+        else:
+            print(f"Seu adversário decidiu continuar. Ele trocou {trocas_outro} cartas.")
+        
+    resposta=input(f"Sua mão agora é {mao_atual}, vocẽ trocou {trocas_minhas} de {mao_original}. Quer continuar? ")
+    if resposta=="Sim" or resposta=="sim":
+        return True
+    elif resposta=="Não" or resposta=="não":
+        return False
+    else:
+        print(f"'{resposta}' não é uma resposta válida, por favor responda com Sim ou Não")
+        return desistir_humano(mao_atual, mao_original, trocas_minhas,
+trocas_outro, segundo)
+
+def trocas_ganancioso(mao, trocas1=None):
+        if valor_da_mao(mao)==0:
+            return nao_contribuintes_ate_3(mao)
+        else:
+            return nao_contribuintes(mao)
+
+def desistir_ganancioso(mao_atual, mao_original, trocas_minhas,
+trocas_outro=None, segundo=False):
+    if valor_da_mao(mao_atual)<=1 and segundo==False:
+        return False
+    elif valor_da_mao(mao_atual)<=2 and segundo==True:
+        return False
+    else:
+        return True
+
+def trocas_cauteloso(mao, trocas1=None):
+            if valor_da_mao(mao)==0:
+                return nao_contribuintes_ate_3(mao)
+            else:
+                return nao_contribuintes(mao)
+
+def desistir_cauteloso(mao_atual, mao_original, trocas_minhas,
+trocas_outro=None, segundo=False):
+    if trocas_outro==1:# O oponentre troca uma se possivelmente tiver uma quadra
+        if valor_da_mao(mao_atual)<10:#Se caso ele tiver menos na mão que uma quadra
+            return False
+        else:
+            return True
+    
+    if trocas_outro==2:# O oponentre troca duas se possivelmente tiver uma tripla
+        if valor_da_mao(mao_atual)<3:#Se caso ele tiver menos na mão que uma tripla
+            return False
+        else:
+            return True
+    if valor_da_mao(mao_atual)<=1 and segundo==False:#a partir dessa parte ele se comporta como o ganancioso
+        return False
+    elif valor_da_mao(mao_atual)<=2 and segundo==True:
+        return False
+    else:
+        return True
         
 if __name__=="__main__":
     import doctest
