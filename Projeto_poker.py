@@ -105,6 +105,7 @@ def possiblidades(mao_parcial, num_cartas, cartas_restantes):
     return (x for x in lista) #retorna um gerador da lista
 
 
+
 # 2 b )
 def vale_apena_trocar(mao, mao_parcial):
     """
@@ -176,8 +177,6 @@ def valor_médio_troca(mao, trocas):
         valores_apos_troca += [valor_da_mao(uma_possibilidade[0])]
 
         
-
-
 if __name__=="__main__":
     import doctest
     doctest.testmod()
